@@ -4,9 +4,10 @@ import pandas as pd
 
 # Importing dataset
 
-dataset = pd.read_csv('Restaurant_Reviews.tsv',delimiter='\t',quoting=3)  # delimiter='\t': This tells the read_csv function that the columns in the file are separated by a tab (\t).
-                                                                          # quoting=3: A value of 3 corresponds to csv.QUOTE_NONE, which indicates that no characters should be quoted in the file. 
-                                                                          # In this case, no quotation marks are used in the data.
+dataset = pd.read_csv('Restaurant_Reviews.tsv',
+                      delimiter='\t',quoting=3)  # delimiter='\t': This tells the read_csv function that the columns in the file are separated by a tab (\t).
+                                                 # quoting=3: A value of 3 corresponds to csv.QUOTE_NONE, which indicates that no characters should be quoted in the file. 
+                                                 # In this case, no quotation marks are used in the data.
 
 # Cleaning texts
 import re
