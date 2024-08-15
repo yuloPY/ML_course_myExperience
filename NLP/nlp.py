@@ -40,3 +40,36 @@ for i in range(0,len(dataset)):
 
     corpus.append(review)
 
+
+# Creating the Bag of Words Model
+from sklearn.feature_extraction.text import CountVectorizer # CountVectorizer counts the number of times each word occurs in
+                                                            #  the document and converts these frequencies into a vector.
+
+cv = CountVectorizer(max_features=1500) # max_features=1500 parameter: This parameter ensures that the model 
+                                        #  only considers the 1500 most frequent words.
+
+X = cv.fit_transform(corpus).toarray()  # .toarray(): This method converts the resulting vectors into a NumPy array. 
+
+y = dataset.iloc[:,-1].values
+
+# Splitting the dataset
+from sklearn.model_selection import train_test_split
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=0)
+
+# Training the Naive Bayes Model
+from sklearn.naive_bayes import GaussianNB
+bayes = GaussianNB()
+bayes.fit(X_train,y_train)
+
+# Predicting the test set results
+y_pred = bayes.predict(X_test)
+np.set_printoptions(precision=2)
+print(np.concatenate((y_pred.reshape(-1,1), y_test.reshape(-1,1)),1))
+
+# Making the Confusion Matrix
+from sklearn.metrics import confusion_matrix,accuracy_score
+cm = confusion_matrix(y_test,y_pred)
+accuracy = accuracy_score(y_test,y_pred)
+print("Confusion Matrix:",cm)
+print("Accuracy Score:",accuracy)
+
