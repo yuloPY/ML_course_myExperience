@@ -1,2 +1,2 @@
 # ML_course_myExperience
- Some codes from mine ML learning journey.
+ Some codes from mine ML journey.
